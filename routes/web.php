@@ -11,6 +11,11 @@
 |
 */
 
+Route::post('/task/create', 'TaskController@create');
+Route::get('/task/read', 'TaskController@read');
+Route::post('/task/update', 'TaskController@update');
+Route::post('/task/delete', 'TaskController@delete');
+
 Route::fallback(function () {
     return view('welcome');
 });
