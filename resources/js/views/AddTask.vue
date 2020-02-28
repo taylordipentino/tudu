@@ -1,5 +1,5 @@
 <template>
-    <div class="add-task">
-        <h3>Add Task Component</h3>
+    <div class="add-task container-fluid">
+        <h1>Add Task</h1>
     </div>
 </template>

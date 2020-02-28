@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from '@/js/views/Home';
+import Dashboard from '@/js/views/Dashboard';
 import AddTask from '@/js/views/AddTask';
+import About from '@/js/views/About';
 
 Vue.use(VueRouter);
 
@@ -11,13 +12,18 @@ const router = new VueRouter({
     routes: [
         {
             path: '/', 
-            name: 'home', 
-            component: Home, 
+            name: 'dashboard', 
+            component: Dashboard, 
         }, 
         {
             path: '/add-task', 
             name: 'add-task', 
             component: AddTask, 
+        }, 
+        {
+            path: '/about', 
+            name: 'about', 
+            component: About, 
         }, 
     ], 
 });

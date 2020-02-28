@@ -1,14 +1,18 @@
 <template>
-    <div>
-        <h1>My App</h1>
-        
-        <router-link to="/">Home</router-link>
-        <router-link to="/add-task">Add Task</router-link>
-
-        <router-view></router-view>
+    <div class="app">
+        <navigation></navigation>        
+        <div class="py-4">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
-    export default {};
+    import Navigation from '@/js/components/Navigation';
+
+    export default {
+        components: {
+            Navigation
+        }
+    }
 </script>
