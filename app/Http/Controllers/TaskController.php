@@ -58,7 +58,7 @@ class TaskController extends Controller
     public function update() 
     {
         // Only continue if an ID and name were provided
-        if (!isset($request->id || !isset($request->name)) {
+        if (!isset($request->id) || !isset($request->name)) {
             return;
         }
 
