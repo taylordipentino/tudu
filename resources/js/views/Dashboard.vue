@@ -1,5 +1,5 @@
 <template>
-    <div class="home container-fluid">
+    <div class="home container">
         <task-list></task-list>
     </div>
 </template>
