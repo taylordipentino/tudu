@@ -19,6 +19,9 @@ msg() {
   echo ""
 }
 
+# Make sure we don't get prompted
+export DEBIAN_FRONTEND=noninteractive
+
 # Update the repositories and upgrade packages
 msg "Updating the repositories and upgrading packages..."
 apt update
