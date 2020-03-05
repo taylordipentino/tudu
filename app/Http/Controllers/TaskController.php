@@ -55,7 +55,7 @@ class TaskController extends Controller
      * @param Request
      * @return void
      */
-    public function update() 
+    public function update(Request $request) 
     {
         // Only continue if an ID and name were provided
         if (!isset($request->id) || !isset($request->name)) {
@@ -79,7 +79,7 @@ class TaskController extends Controller
      * @param Request
      * @return void
      */
-    public function delete() 
+    public function delete(Request $request) 
     {
         // Only continue if an ID was provided 
         if (!isset($request->id)) {
