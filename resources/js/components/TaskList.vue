@@ -25,7 +25,7 @@
                 </tr>
             </tbody>
             <tbody v-else>
-                <tr><td colspan="2">There are no Tasks available at this time.</td></tr>
+                <tr class="no-tasks"><td colspan="2">There are no Tasks available at this time.</td></tr>
             </tbody>
         </table>
     </div>
@@ -154,5 +154,10 @@
     .delete-task {
         background: none;
         border: none;
+    }
+
+    .no-tasks td {
+        width: 100%;
+        text-align: left;
     }
 </style>
