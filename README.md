@@ -1,2 +1,2 @@
 # Tudu
-A simple todo list app built with Laravel, Vue, and Vue Router.
+Tudu is a basic todo list app built with Laravel, Vue, and Vue Router.
