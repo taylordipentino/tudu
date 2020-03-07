@@ -11,11 +11,17 @@
 |
 */
 
+Auth::routes();
+
 Route::post('/task/create', 'TaskController@create');
 Route::get('/task/read', 'TaskController@read');
 Route::post('/task/update', 'TaskController@update');
 Route::post('/task/delete', 'TaskController@delete');
 
-Route::fallback(function () {
+Route::get('/', function () {
     return view('welcome');
+})->middleware('auth');
+
+Route::fallback(function () {
+    return redirect('/');
 });

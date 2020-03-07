@@ -17,7 +17,39 @@
                         <router-link class="nav-link" to="/about">About</router-link>
                     </li>
                 </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-link" v-on:click="logout">Logout</button>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                token: document.head.querySelector("[name~=csrf-token][content]").content
+            }
+        }, 
+        methods: {
+            logout() {
+                // Create the request
+                fetch('logout', {
+                        headers: {
+                            'Accept': 'application/json', 
+                            'Content-Type': 'application/json'
+                        }, 
+                        method: 'POST', 
+                        body: JSON.stringify({ _token: this.token })
+                    })
+                    .then((response) => {
+                        // Reload
+                        location.reload();
+                    });
+            }
+        }
+    }
+</script>
