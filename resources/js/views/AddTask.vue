@@ -6,7 +6,7 @@
 
         <div class="input mt-4">
             <div class="text">
-                <input type="text" placeholder="What are we going to accomplish today?" v-model="name">
+                <input type="text" placeholder="What are we going to accomplish today?" v-model="name" v-on:keyup.enter="submit">
             </div>
             <div class="button">
                 <button class="create-task text-primary" title="Create Task" v-on:click="submit">
