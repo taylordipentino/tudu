@@ -23,8 +23,7 @@
         data() {
             return {
                 name: '', 
-                error: false, 
-                token: document.head.querySelector("[name~=csrf-token][content]").content
+                error: false
             }
         }, 
         methods: {
@@ -41,26 +40,12 @@
                 }
 
                 // Create the request
-                fetch('task/create', {
-                        headers: {
-                            'Accept': 'application/json', 
-                            'Content-Type': 'application/json'
-                        }, 
-                        method: 'POST', 
-                        body: JSON.stringify({ _token: this.token, name: this.name })
-                    })
-                    .then((response) => {
-                        // Make sure there isn't a non-200 status
-                        if (response.status !== 200) {
-                            // Provide an error message
-                            this.error = 'The server encountered an error while processing your request.';
-                            // Don't continue
-                            return;
-                        }
+                axios.post('task/create', {name: this.name})
+                    // Redirect to the dashboard if successful 
+                    .then(() => this.$router.push('/'))
 
-                        // Redirect to the dashboard
-                        this.$router.push('/');
-                    });
+                    // Provide an error message if unsuccessful 
+                    .catch(() => this.error = 'The server encountered an error while processing your request.');
             }
         }
     }

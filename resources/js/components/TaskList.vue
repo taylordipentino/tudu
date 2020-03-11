@@ -42,8 +42,7 @@
             return {
                 tasks: [], 
                 hasTasks: false, 
-                error: false, 
-                csrf: document.head.querySelector("[name~=csrf-token][content]").content
+                error: false
             }
         }, 
         methods: {
@@ -55,84 +54,49 @@
                 this.tasks = [];
 
                 // Create the request
-                fetch('task/read')
+                axios.get('task/read')
                     .then((response) => {
-                        // Make sure there isn't a non-200 status
-                        if (response.status !== 200) {
-                            // Provide an error message
-                            this.error = 'The server encountered an error while processing your request.';
-                            // Don't continue
-                            return false;
-                        }
+                        // Unpack the response
+                        let data = response.data;
 
-                        // Otherwise return the JSON response
-                        return response.json();
-                    })
-                    .then((data) => {
+                        // No tasks by default
+                        this.hasTasks = false;
+                        
                         // Check if tasks were returned
                         if (data.length > 0) {
                             // Let the component know there are tasks
                             this.hasTasks = true;
                             // Sort and store the tasks
                             this.tasks = data.sort((a, b) => a.completed - b.completed);
-                            return;
                         }
+                    })
 
-                        // Otherwise let the component know there are no tasks
-                        this.hasTasks = false;
-                    });
+                    // Provide an error message if unsuccessful 
+                    .catch(() => this.error = 'The server encountered an error while processing your request.');
             }, 
             remove(id) {
                 // Clear any previous errors 
                 this.error = false;
 
                 // Create the request
-                fetch('task/delete', {
-                        method: 'POST', 
-                        headers: {
-                            'Accept': 'application/json', 
-                            'Content-Type': 'application/json'
-                        }, 
-                        body: JSON.stringify({ _token: this.csrf, id: id })
-                    })
-                    .then((response) => {
-                        // Make sure there isn't a non-200 status
-                        if (response.status !== 200) {
-                            // Provide an error message
-                            this.error = 'The server encountered an error while processing your request.';
-                            // Don't continue
-                            return;
-                        }
+                axios.post('task/delete', {id: id})
+                    // Reload the Task List if successful
+                    .then(() => this.load())
 
-                        // Reload the Task List
-                        this.load();
-                    });
+                    // Provide an error message if unsuccessful
+                    .catch(() => this.error = 'The server encountered an error while processing your request.');
             }, 
             complete(id) {
                 // Clear any previous errors 
                 this.error = false;
 
                 // Create the request
-                fetch('task/complete', {
-                        method: 'POST', 
-                        headers: {
-                            'Accept': 'application/json', 
-                            'Content-Type': 'application/json'
-                        }, 
-                        body: JSON.stringify({ _token: this.csrf, id: id })
-                    })
-                    .then((response) => {
-                        // Make sure there isn't a non-200 status
-                        if (response.status !== 200) {
-                            // Provide an error message
-                            this.error = 'The server encountered an error while processing your request.';
-                            // Don't continue
-                            return;
-                        }
+                axios.post('task/complete', {id: id})
+                    // Reload the Task List if successful
+                    .then(() => this.load())
 
-                        // Reload the Task List
-                        this.load();
-                    });
+                    // Provide an error message if unsuccessful
+                    .catch(() => this.error = 'The server encountered an error while processing your request.');
             }
         }, 
         mounted() {
