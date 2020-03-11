@@ -61,24 +61,23 @@ class TaskController extends Controller
     }
 
     /**
-     * Update an existing Task. 
+     * Mark a Task as complete. 
      *
      * @param Request
      * @return void
      */
-    public function update(Request $request) 
+    public function complete(Request $request) 
     {
-        // Only continue if an ID and name were provided
-        if (!isset($request->id) || !isset($request->name)) {
+        // Only continue if an ID was provided
+        if (!isset($request->id)) {
             return;
         }
 
         // Get the task 
         $task = Task::find($request->id);
 
-        // Set the attributes 
-        $task->name = $request->name;
-        $task->completed = $request->completed;
+        // Set the completed attribute to true 
+        $task->completed = true;
 
         // Store the Task
         $task->save();

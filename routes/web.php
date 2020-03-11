@@ -15,7 +15,7 @@ Auth::routes();
 
 Route::post('/task/create', 'TaskController@create');
 Route::get('/task/read', 'TaskController@read');
-Route::post('/task/update', 'TaskController@update');
+Route::post('/task/complete', 'TaskController@complete');
 Route::post('/task/delete', 'TaskController@delete');
 
 Route::get('/', function () {
