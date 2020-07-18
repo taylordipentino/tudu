@@ -33,9 +33,7 @@
                 </div>
             </nav>
         @endguest
-        <div class="py-4">
-            @yield('content')
-        </div>
+        @yield('content')
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
 </html>

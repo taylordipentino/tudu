@@ -130,11 +130,16 @@
     }
 
     .task {
+        display: flex;
         border: 1px solid #e0e0e0;
         border-radius: 0.5em;
         padding: 1em;
         background-color: #fff;
         margin-bottom: 1em;
+    }
+
+    .task > td {
+        flex: 1 1 auto;
     }
 
     .task.completed {

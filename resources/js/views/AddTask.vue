@@ -53,7 +53,7 @@
 
 <style scoped>
     .input {
-        display: block;
+        display: flex;
         border: 1px solid #e0e0e0;
         border-radius: 0.5em;
         padding: 1em;
@@ -63,7 +63,7 @@
 
     .input .text, 
     .input .button {
-        display: inline-block;
+        flex: 1 1 auto;
         box-sizing: border-box;
         font-size: 1.2rem;
         vertical-align: bottom;
